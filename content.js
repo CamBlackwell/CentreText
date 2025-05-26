@@ -6,7 +6,7 @@ function centreAllText() {
 
     const containers = document.querySelectorAll('body, main, #root, [role="main"], .container, .content, .wrapper');
     containers.forEach((container, index) => {
-        container.style.setProperty('max-width', '800px', 'important');
+        container.style.setProperty('max-width', '1500px', 'important');
         container.style.setProperty('margin', '0 auto', 'important');
     });
 
