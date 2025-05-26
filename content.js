@@ -4,11 +4,21 @@ let originalStyles = [];
 function centreAllText() {
     if (isTextCentered) return;
 
+    const containers = document.querySelectorAll('body, main, #root, [role="main"], .container, .content, .wrapper');
+    containers.forEach((container, index) => {
+        container.style.setProperty('max-width', '800px', 'important');
+        container.style.setProperty('margin', '0 auto', 'important');
+    });
+
     const textElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, div, li, span, a, td, th, label, button');
 
     textElements.forEach((element, index) => {
-        originalStyles[index] = element.style.textAlign;
-        element.style.textAlign = 'center';
+        originalStyles[index] = {
+                textAlign: element.style.textAlign,
+                margin: element.style.margin,
+                maxWidth: element.style.maxWidth,
+            };
+        element.style.setProperty('text-align', 'center', 'important');
     });
 
     isTextCentered = true;
@@ -17,10 +27,19 @@ function centreAllText() {
 function revertAllText() {
     if (!isTextCentered) return;
 
+    const containers = document.querySelectorAll('body, main, #root, [role="main"], .container, .content, .wrapper');
+    containers.forEach((container, index) => {
+        container.style.removeProperty('max-width');
+        container.style.removeProperty('margin');
+
+    });
     const textElements = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, div, li, span, a, td, th, label, button');
 
     textElements.forEach((element, index) => {
-        element.style.textAlign = originalStyles[index] || '';
+        if (originalStyles[index]) {
+            element.style.textAlign = originalStyles[index].textAlign || '';
+        }
+        element.style.removeProperty('text-align');
     });
 
     isTextCentered = false;
@@ -41,3 +60,5 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         sendResponse({centred : isTextCentered});
     }
 });
+
+console.log('Content script loaded successfully');

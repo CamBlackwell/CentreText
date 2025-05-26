@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         status.textContent = 'Text is centred';
                         toggleBtn.style.backgroundColor = '#f44336';
                     } else {
-                        toggleBtn.textContent = "Centre Text";
+                        toggleBtn.textContent = "Toggle Centre Text";
                         status.textContent = 'Text is normal';
                         toggleBtn.style.backgroundColor = '#4CAF50';
                     }
