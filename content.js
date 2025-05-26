@@ -1,12 +1,13 @@
 let isTextCentered = false;
 let originalStyles = [];
+let currentWidth = 1500;
 
 function centreAllText() {
     if (isTextCentered) return;
 
     const containers = document.querySelectorAll('body, main, #root, [role="main"], .container, .content, .wrapper');
     containers.forEach((container, index) => {
-        container.style.setProperty('max-width', '1500px', 'important');
+        container.style.setProperty('max-width', currentWidth + 'px', 'important');
         container.style.setProperty('margin', '0 auto', 'important');
     });
 
@@ -55,7 +56,16 @@ function toggleTextCentering() {
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    if (request.action === 'toggleTextCentering') {
+    if (request.action === 'updateWidth') {
+        currentWidth = request.width;
+        if (isTextCentered) {
+            const containers = document.querySelectorAll('body, main, #root, [role="main"], .container, .content, .wrapper');
+            containers.forEach((container => {
+                container.style.setProperty('max-width', currentWidth + 'px', 'important');
+            }));
+        }
+        sendResponse({centred : isTextCentered});
+    } else if (request.action === 'toggleTextCentering') {
         toggleTextCentering();
         sendResponse({centred : isTextCentered});
     }
