@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     widthSlider.addEventListener('change', function() {
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
             chrome.tabs.sendMessage(tabs[0].id, {
-                action: 'setWidth', 
+                action: 'updateWidth', 
                 width: widthSlider.value
             });
         });

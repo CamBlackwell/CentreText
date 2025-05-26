@@ -60,14 +60,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         currentWidth = request.width;
         if (isTextCentered) {
             const containers = document.querySelectorAll('body, main, #root, [role="main"], .container, .content, .wrapper');
-            containers.forEach((container => {
+            containers.forEach(container => {
                 container.style.setProperty('max-width', currentWidth + 'px', 'important');
-            }));
+            });
         }
         sendResponse({centred : isTextCentered});
     } else if (request.action === 'toggleTextCentering') {
         toggleTextCentering();
-        sendResponse({centred : isTextCentered});
+        sendResponse({centred : true});
     }
 });
 
