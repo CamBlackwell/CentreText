@@ -67,7 +67,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         sendResponse({centred : isTextCentered});
     } else if (request.action === 'toggleTextCentering') {
         toggleTextCentering();
-        sendResponse({centred : true});
+        sendResponse({centred : isTextCentered});
     }
 });
 
