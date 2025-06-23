@@ -7,3 +7,5 @@ Feel free to take the code an put it into developer mode chrome extensions
 There is a slider as well to adjust for personal monitor size
 
 ![photoforgit](https://github.com/user-attachments/assets/7594446c-2d7e-4fd8-8063-b00b6c882ed1)
+
+link is here: https://chromewebstore.google.com/detail/text-centerer/imfkfhmlnnhiaioikdioblcbpnlckncn
